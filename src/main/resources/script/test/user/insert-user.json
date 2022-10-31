@@ -1,0 +1,9 @@
+[
+    {
+        "_class": "com.tiagodeveloper.document.User",
+        "name": "Tânia",
+        "email": "tania@gmail.com",
+        "documentType": "CPF",
+        "documentValue": "08829991686"
+    }
+]

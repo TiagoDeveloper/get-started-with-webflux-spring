@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: example
+      database: mongo_db
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+      
+  mongodb:
+    embedded:
+      version: 5.0.5
+      
