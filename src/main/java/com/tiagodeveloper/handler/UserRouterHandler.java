@@ -1,5 +1,6 @@
 package com.tiagodeveloper.handler;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,7 +41,7 @@ public class UserRouterHandler {
 		.ok()
 		.contentType(MediaType.APPLICATION_JSON)
 		.body(
-			userService.findById(request.pathVariable("id")),
+			userService.findById(new ObjectId(request.pathVariable("id"))),
 			User.class
 		);
 	}

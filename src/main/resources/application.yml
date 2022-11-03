@@ -20,6 +20,12 @@ management:
     web:
       exposure:
         include: '*'
+resilience4j:
+  circuitbreaker:
+    instances:
+      find-all-users:
+        minimumNumberOfCalls: 4
+        slidingWindowSize: 8
 
 ---
 spring:

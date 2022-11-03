@@ -1,15 +1,6 @@
 package com.tiagodeveloper;
 
-import java.util.UUID;
-
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-import com.tiagodeveloper.document.User;
-import com.tiagodeveloper.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
 
 //@Component
 //@RequiredArgsConstructor

@@ -1,11 +1,13 @@
 package com.tiagodeveloper.service.impl;
 
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.tiagodeveloper.document.User;
 import com.tiagodeveloper.repository.UserRepository;
 import com.tiagodeveloper.service.UserService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,12 +19,13 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 
 	@Override
+	@CircuitBreaker(name = "find-all-users")
 	public Flux<User> findAll(long limit, long skip) {
 		return userRepository.findAll().skip(skip).take(limit);
 	}
 
 	@Override
-	public Mono<User> findById(String id) {
+	public Mono<User> findById(ObjectId id) {
 		return userRepository.findById(id);
 	}
 
@@ -30,5 +33,6 @@ public class UserServiceImpl implements UserService {
 	public Mono<User> save(User user) {
 		return userRepository.save(user);
 	}
+	
 
 }
