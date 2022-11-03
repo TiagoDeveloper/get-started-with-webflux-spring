@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webflux-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webflux
+  template:
+    metadata:
+      labels:
+        app: webflux
+    spec:
+      containers:
+      - name: webflux
+        image: docker.io/library/get-started-webflux:latest
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "2568Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8080

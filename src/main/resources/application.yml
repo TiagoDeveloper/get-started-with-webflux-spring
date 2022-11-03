@@ -1,3 +1,5 @@
+
+
 spring:
   profiles:
     active: dev
@@ -10,20 +12,22 @@ spring:
       on-profile: dev
   data:
     mongodb:
-      host: localhost
-      port: 27017
+      uri: ${DATABASE_URI:mongodb://root:example@localhost:27017/}
+      database: black-hole
       authentication-database: admin
-      username: root
-      password: example
-      database: mongo_db
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 ---
 spring:
   config:
     activate:
       on-profile: test
-      
+  main:
+    lazy-initialization: true
   mongodb:
     embedded:
       version: 5.0.5
