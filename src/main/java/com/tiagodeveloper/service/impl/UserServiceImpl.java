@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.tiagodeveloper.document.User;
+import com.tiagodeveloper.exception.NotFoundException;
 import com.tiagodeveloper.repository.UserRepository;
 import com.tiagodeveloper.service.UserService;
 
@@ -26,7 +27,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Mono<User> findById(ObjectId id) {
-		return userRepository.findById(id);
+		return userRepository.findById(id).switchIfEmpty(
+				Mono.error( new NotFoundException("ID {} não encontrado"))
+		);
 	}
 
 	@Override
